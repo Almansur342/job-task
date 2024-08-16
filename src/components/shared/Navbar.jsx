@@ -1,31 +1,31 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from '../../assets/filterFlex.jpg';
-// import { useContext } from "react";
-// import { AuthContext } from "../../Firebase/AuthProvider/AuthProvider";
 import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../../router/authProvider/AuthProvider";
+import { useContext } from "react";
 
 const Navbar = () => {
-  // const {user,logOut} = useContext(AuthContext);
+  const {user,logOut} = useContext(AuthContext);
   const navigate = useNavigate();
-  // const handleLogOut = () =>{
-  //   logOut()
-  //   .then(result => {
-  //     console.log(result.user);
-  //     navigate('/');
-  //   })
-  //   .catch(error =>{
-  //     console.error(error);
-  //   })
-  // }
+  const handleLogOut = () =>{
+    logOut()
+    .then(result => {
+      console.log(result.user);
+      navigate('/');
+    })
+    .catch(error =>{
+      console.error(error);
+    })
+  }
 
   const navLink = <div className="flex items-center">
-    <li className="!bg-white"><NavLink to='/' className={({ isActive }) => isActive ? 'border !bg-white border-green-600 text-[#23BE0A] ' : 'text-[#131313CC]'}>Home</NavLink></li>
+    <li className="!bg-white text-lg"><NavLink to='/' className={({ isActive }) => isActive ? 'border !bg-white border-green-600 text-[#b18b5e] ' : 'text-[#131313CC]'}>Home</NavLink></li>
 
-    <li className="!bg-white"><NavLink to='/updateProfile' className={({ isActive }) => isActive ? 'border !bg-white border-green-600 text-[#23BE0A]  ' : 'text-[#131313CC]'}>Update Profile</NavLink></li>
+    <li className="!bg-white text-lg"><NavLink to='/updateProfile' className={({ isActive }) => isActive ? 'border !bg-white border-green-600 text-[#b18b5e]  ' : 'text-[#131313CC]'}>Update Profile</NavLink></li>
 
-    {/* { user && <>
-      <li><NavLink to='/contactUs' className={({ isActive }) => isActive ? 'border border-green-600 text-[#23BE0A]' : 'text-[#131313CC]'}>Contact Us</NavLink></li>
-    </>} */}
+    { user && <>
+      <li className="text-lg"><NavLink to='/contactUs' className={({ isActive }) => isActive ? 'border border-green-600 text-[#b18b5e]' : 'text-[#131313CC]'}>Contact Us</NavLink></li>
+    </>}
   </div>
   return (
     <div className="navbar bg-base-100 max-w-6xl mx-auto mt-5">
@@ -52,23 +52,20 @@ const Navbar = () => {
           {navLink}
         </ul>
       </div>
-      {/* <div className="navbar-end">
+      <div className="navbar-end">
         {user ?
-         <div className="flex items-center gap-5">
-          <div className="tooltip tooltip-bottom" data-tip={user?.displayName || 'mansur abdullah'}>
-          <img className="w-16 lg:w-20 h-16 rounded-full border-2" src={user?.photoURL || 'Image not found'} alt="" />
-          </div>
+         <div className="">
           <Link to='/'>
-            <button onClick={handleLogOut} className="px-2 lg:px-6 font-semibold text-xs lg:text-xl text-white bg-[#23BE0A] py-1 lg:py-2 rounded">Sign out</button>
+            <button onClick={handleLogOut} className="px-2 lg:px-6 font-semibold text-xs lg:text-xl text-white bg-[#b18b5e] py-1 lg:py-2 rounded">Sign out</button>
           </Link>
         </div> : 
         <div>
           <Link to='/login'>
-            <button className="px-2 lg:px-6 font-semibold text-base lg:text-xl text-white bg-[#23BE0A] py-1 lg:py-2 rounded">Login</button>
+            <button className="px-2 lg:px-6 font-semibold text-base lg:text-xl text-white bg-[#b18b5e] py-1 lg:py-2 rounded">Login</button>
           </Link>
         </div>
         }
-      </div> */}
+      </div>
     </div>
   );
 };
