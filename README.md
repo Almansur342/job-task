@@ -1,8 +1,26 @@
-# React + Vite
+# Filter Flex
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The frontend of Filter Flex is built using React and Tailwind CSS, providing a responsive and user-friendly interface. Users can filter products by brand, category, price range, search by name, and sort them according to their preferences.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Responsive Design**: Fully responsive UI built with Tailwind CSS.
+- **Filter by Brand, Category, and Price**: Powerful filtering options.
+- **Search and Sort**: Search products by name and sort them by various criteria.
+- **Axios for API Requests**: Axios is used for seamless API integration.
+
+## Tech Stack
+
+- **React**
+- **Tailwind CSS**
+- **Axios**
+- **Firebase** (for authentication and hosting)
+
+## Installation
+
+To get started with the frontend, clone the repository and install the dependencies:
+
+```bash
+git clone https://github.com/yourusername/filter-flex-frontend.git
+cd filter-flex-frontend
+npm install
