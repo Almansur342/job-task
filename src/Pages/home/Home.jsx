@@ -57,6 +57,7 @@ const Home = () => {
     setSearchText('');
     setMinPrice('');
     setMaxPrice('');
+    setBrand('')
     setCurrentPage(1);
   };
 
