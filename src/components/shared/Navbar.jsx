@@ -24,7 +24,7 @@ const Navbar = () => {
     <li className="!bg-white text-lg"><NavLink to='/about' className={({ isActive }) => isActive ? 'border !bg-white border-green-600 text-[#b18b5e]  ' : 'text-[#131313CC]'}>About Us</NavLink></li>
 
     { user && <>
-      <li className="text-lg"><NavLink to='/contactUs' className={({ isActive }) => isActive ? 'border border-green-600 text-[#b18b5e]' : 'text-[#131313CC]'}>Contact Us</NavLink></li>
+      <li className="text-lg"><NavLink to='/contact' className={({ isActive }) => isActive ? 'border border-green-600 text-[#b18b5e]' : 'text-[#131313CC]'}>Contact Us</NavLink></li>
     </>}
   </div>
   return (
