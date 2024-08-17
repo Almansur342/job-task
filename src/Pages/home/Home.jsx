@@ -10,17 +10,17 @@ const Home = () => {
   const [search, setSearch] = useState('')
   const [searchText, setSearchText] = useState('')
   const [products, setProducts] = useState([])
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const { data } = await axios(
-  //       `${
-  //         import.meta.env.VITE_API_URL
-  //       }/all-products?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&sort=${sort}&search=${search}`
-  //     )
-  //     setProducts(data)
-  //   }
-  //   getData()
-  // }, [currentPage, filter, itemsPerPage, search, sort])
+  useEffect(() => {
+    const getData = async () => {
+      const { data } = await axios(
+        `${
+          import.meta.env.VITE_API_URL
+        }/all-products?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&sort=${sort}&search=${search}`
+      )
+      setProducts(data)
+    }
+    getData()
+  }, [currentPage, filter, itemsPerPage, search, sort])
 
   useEffect(() => {
     const getCount = async () => {
