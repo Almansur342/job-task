@@ -2,7 +2,7 @@ import { formatDistanceToNow } from "date-fns";
 import { FaStar } from "react-icons/fa";
 
 const Cards = ({product}) => {
-  const {productName,productImage,description,price,ratings,category,creationDate} = product || {}
+  const {productName,productImage,description,price,ratings,category,creationDate,brand} = product || {}
 
   const parsedDate = new Date(creationDate);
   let timeAgo = 'Invalid date';
@@ -18,7 +18,10 @@ const Cards = ({product}) => {
     <div className="mt-2">
       <h2 className="text-xl  text-[#34373f] font-semibold my-2">{productName}</h2>
       <p>{description}</p>
+      <div className="flex justify-between items-center">
       <p className="text-lg font-medium"># {category}</p>
+      <p className="text-lg font-medium">Brand: {brand}</p>
+      </div>
       <hr className='my-4' />
       <div className='flex justify-between mb-4'>
         <div className="flex gap-1 items-center">

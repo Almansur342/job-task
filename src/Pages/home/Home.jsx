@@ -12,18 +12,19 @@ const Home = () => {
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [searchText, setSearchText] = useState('')
+  const [brand, setBrand] = useState('')
   const [products, setProducts] = useState([])
   useEffect(() => {
     const getData = async () => {
       const { data } = await axios(
         `${
           import.meta.env.VITE_API_URL
-        }/all-products?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&sort=${sort}&search=${search}&minPrice=${minPrice}&maxPrice=${maxPrice}`
+        }/all-products?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&sort=${sort}&search=${search}&minPrice=${minPrice}&maxPrice=${maxPrice}&brand=${brand}`
       )
       setProducts(data)
     }
     getData()
-  }, [currentPage, filter, itemsPerPage, search, sort,minPrice,maxPrice])
+  }, [currentPage, filter, itemsPerPage, search, sort,minPrice,maxPrice,brand])
   console.log(products)
 
   useEffect(() => {
@@ -31,13 +32,13 @@ const Home = () => {
       const { data } = await axios(
         `${
           import.meta.env.VITE_API_URL
-        }/products-count?filter=${filter}&search=${search}&minPrice=${minPrice}&maxPrice=${maxPrice}`
+        }/products-count?filter=${filter}&search=${search}&minPrice=${minPrice}&maxPrice=${maxPrice}&brand=${brand}`
       )
 
       setCount(data.count)
     }
     getCount()
-  }, [filter,search,minPrice,maxPrice])
+  }, [filter,search,minPrice,maxPrice,brand])
 
   console.log(count)
   const numberOfPages = Math.ceil(count / itemsPerPage)
@@ -67,7 +68,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className='flex flex-col md:flex-row justify-center items-center gap-5 '>
+      <div className='flex flex-col md:flex-row lg:flex-row lg:flex-wrap justify-center items-center gap-5 '>
           <div>
             <select
               onChange={e => {
@@ -90,6 +91,34 @@ const Home = () => {
               <option value='Footwear'>Footwear</option>
               <option value='Home Security'>Home Security</option>
             </select>
+          </div>
+          
+          <div>
+            <select
+              onChange={e => {
+                setBrand(e.target.value)
+                setCurrentPage(1)
+              }}
+              value={brand}
+              name='brand'
+              id='brand'
+              className='border p-4 rounded-lg'
+            >
+              <option value=''>Filter By Brand</option>
+              <option value='TechFlow'>TechFlow</option>
+              <option value='ByteWare'>ByteWare</option>
+              <option value='SoundEdge'>SoundEdge</option>
+              <option value='ChronoTek'>ChronoTek</option>
+              <option value='StrideFlex'>StrideFlex</option>
+              <option value='UrbanEdge'>UrbanEdge</option>
+              <option value='HomeEssence'>HomeEssence</option>
+              <option value='SmilePro'>SmilePro</option>
+              <option value='AquaGuard'>AquaGuard</option>
+              <option value='PowerPulse'>PowerPulse</option>
+              <option value='VisionWare'>VisionWare</option>
+              <option value='GripGear'>GripGear</option>
+            </select>
+              
           </div>
 
           <div>
