@@ -68,7 +68,7 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <div className="my-10">
       <div className='flex flex-col md:flex-row lg:flex-row lg:flex-wrap justify-center items-center gap-5 '>
           <div>
             <select
@@ -122,7 +122,7 @@ const Home = () => {
               
           </div>
 
-          <div>
+          <div className="ml-16 lg:ml-0">
           <input
             type="number"
             placeholder="Min Price"
@@ -152,7 +152,7 @@ const Home = () => {
                 aria-label='Enter Job Title'
               />
 
-              <button className='px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'>
+              <button className='px-2 lg:px-6 font-semibold text-xs lg:text-xl text-white bg-[#b18b5e] py-1 lg:py-2 rounded'>
                 Search
               </button>
             </div>
@@ -174,7 +174,7 @@ const Home = () => {
               <option value='newest'>Newest</option>
             </select>
           </div>
-          <button onClick={handleReset} className='btn'>
+          <button onClick={handleReset} className='px-2 lg:px-6 font-semibold text-xs lg:text-xl text-white bg-[#b18b5e] py-1 lg:py-2 rounded'>
             Reset
           </button>
         </div>
