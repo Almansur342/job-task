@@ -1,13 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Cards from "../../components/cards/Cards";
 
 const Home = () => {
-  const [itemsPerPage, setItemsPerPage] = useState(4)
+  const [itemsPerPage, setItemsPerPage] = useState(6)
   const [currentPage, setCurrentPage] = useState(1)
   const [count, setCount] = useState(0)
   const [filter, setFilter] = useState('')
   const [sort, setSort] = useState('')
   const [search, setSearch] = useState('')
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
   const [searchText, setSearchText] = useState('')
   const [products, setProducts] = useState([])
   useEffect(() => {
@@ -15,25 +18,26 @@ const Home = () => {
       const { data } = await axios(
         `${
           import.meta.env.VITE_API_URL
-        }/all-products?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&sort=${sort}&search=${search}`
+        }/all-products?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&sort=${sort}&search=${search}&minPrice=${minPrice}&maxPrice=${maxPrice}`
       )
       setProducts(data)
     }
     getData()
-  }, [currentPage, filter, itemsPerPage, search, sort])
+  }, [currentPage, filter, itemsPerPage, search, sort,minPrice,maxPrice])
+  console.log(products)
 
   useEffect(() => {
     const getCount = async () => {
       const { data } = await axios(
         `${
           import.meta.env.VITE_API_URL
-        }/products-count?filter=${filter}&search=${search}`
+        }/products-count?filter=${filter}&search=${search}&minPrice=${minPrice}&maxPrice=${maxPrice}`
       )
 
       setCount(data.count)
     }
     getCount()
-  }, [filter, search])
+  }, [filter,search,minPrice,maxPrice])
 
   console.log(count)
   const numberOfPages = Math.ceil(count / itemsPerPage)
@@ -44,12 +48,16 @@ const Home = () => {
     console.log(value)
     setCurrentPage(value)
   }
-  const handleReset = () => {
-    setFilter('')
-    setSort('')
-    setSearch('')
-    setSearchText('')
-  }
+
+   const handleReset = () => {
+    setFilter('');
+    setSort('');
+    setSearch('');
+    setSearchText('');
+    setMinPrice('');
+    setMaxPrice('');
+    setCurrentPage(1);
+  };
 
   const handleSearch = e => {
     e.preventDefault()
@@ -72,11 +80,35 @@ const Home = () => {
               className='border p-4 rounded-lg'
             >
               <option value=''>Filter By Category</option>
-              <option value='Web Development'>Web Development</option>
-              <option value='Graphics Design'>Graphics Design</option>
-              <option value='Digital Marketing'>Digital Marketing</option>
+              <option value='Electronics'>Electronics</option>
+              <option value='Home Appliances'>Home Appliances</option>
+              <option value='Wearables'>Wearables</option>
+              <option value='Accessories'>Accessories</option>
+              <option value='Furniture'>Furniture</option>
+              <option value='Home Decor'>Home Decor</option>
+              <option value='Outdoors'>Outdoors</option>
+              <option value='Footwear'>Footwear</option>
+              <option value='Home Security'>Home Security</option>
             </select>
           </div>
+
+          <div>
+          <input
+            type="number"
+            placeholder="Min Price"
+            onChange={e => setMinPrice(e.target.value)}
+            value={minPrice}
+            className='border p-4 rounded-lg'
+          />
+          <input
+            type="number"
+            placeholder="Max Price"
+            onChange={e => setMaxPrice(e.target.value)}
+            value={maxPrice}
+            className='border p-4 rounded-lg'
+          />
+        </div>
+
 
           <form onSubmit={handleSearch}>
             <div className='flex p-1 overflow-hidden border rounded-lg    focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300'>
@@ -106,9 +138,10 @@ const Home = () => {
               id='sort'
               className='border p-4 rounded-md'
             >
-              <option value=''>Sort By Deadline</option>
-              <option value='dsc'>Descending Order</option>
-              <option value='asc'>Ascending Order</option>
+              <option value=''>Sort By Price & Date</option>
+              <option value='dsc'>High to Low</option>
+              <option value='asc'>Low to High</option>
+              <option value='newest'>Newest</option>
             </select>
           </div>
           <button onClick={handleReset} className='btn'>
@@ -116,7 +149,11 @@ const Home = () => {
           </button>
         </div>
           
-          
+          <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {
+              products.map(product=> <Cards key={product._id} product={product}></Cards>)
+            }
+          </div>
 
         {/* pagination */}
         {/* Pagination Section */}
