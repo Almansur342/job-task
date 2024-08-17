@@ -21,7 +21,7 @@ const Navbar = () => {
   const navLink = <div className="flex items-center">
     <li className="!bg-white text-lg"><NavLink to='/' className={({ isActive }) => isActive ? 'border !bg-white border-green-600 text-[#b18b5e] ' : 'text-[#131313CC]'}>Home</NavLink></li>
 
-    <li className="!bg-white text-lg"><NavLink to='/updateProfile' className={({ isActive }) => isActive ? 'border !bg-white border-green-600 text-[#b18b5e]  ' : 'text-[#131313CC]'}>Update Profile</NavLink></li>
+    <li className="!bg-white text-lg"><NavLink to='/about' className={({ isActive }) => isActive ? 'border !bg-white border-green-600 text-[#b18b5e]  ' : 'text-[#131313CC]'}>About Us</NavLink></li>
 
     { user && <>
       <li className="text-lg"><NavLink to='/contactUs' className={({ isActive }) => isActive ? 'border border-green-600 text-[#b18b5e]' : 'text-[#131313CC]'}>Contact Us</NavLink></li>
