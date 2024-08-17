@@ -9,30 +9,31 @@ const Home = () => {
   const [sort, setSort] = useState('')
   const [search, setSearch] = useState('')
   const [searchText, setSearchText] = useState('')
-  const [jobs, setJobs] = useState([])
+  const [products, setProducts] = useState([])
   // useEffect(() => {
   //   const getData = async () => {
   //     const { data } = await axios(
   //       `${
   //         import.meta.env.VITE_API_URL
-  //       }/all-jobs?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&sort=${sort}&search=${search}`
+  //       }/all-products?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&sort=${sort}&search=${search}`
   //     )
-  //     setJobs(data)
+  //     setProducts(data)
   //   }
   //   getData()
   // }, [currentPage, filter, itemsPerPage, search, sort])
-  // useEffect(() => {
-  //   const getCount = async () => {
-  //     const { data } = await axios(
-  //       `${
-  //         import.meta.env.VITE_API_URL
-  //       }/jobs-count?filter=${filter}&search=${search}`
-  //     )
 
-  //     setCount(data.count)
-  //   }
-  //   getCount()
-  // }, [filter, search])
+  useEffect(() => {
+    const getCount = async () => {
+      const { data } = await axios(
+        `${
+          import.meta.env.VITE_API_URL
+        }/products-count?filter=${filter}&search=${search}`
+      )
+
+      setCount(data.count)
+    }
+    getCount()
+  }, [filter, search])
 
   console.log(count)
   const numberOfPages = Math.ceil(count / itemsPerPage)
@@ -114,6 +115,8 @@ const Home = () => {
             Reset
           </button>
         </div>
+          
+          
 
         {/* pagination */}
         {/* Pagination Section */}
